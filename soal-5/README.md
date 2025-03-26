@@ -32,10 +32,26 @@ Program ini berisi skrip Python untuk mendekripsi gambar yang telah dienkripsi m
 
 1. Pastikan file gambar terenkripsi (`affinecipher.jpeg`) berada di direktori yang sama dengan skrip.
 2. Jalankan skrip dengan perintah:
-   ```
-   python decrypt_image.py
-   ```
+
+```sh
+# Untuk mencari kunci gunakan:
+  python3 find_key.py
+
+# Untuk mendekripsi image gunakan:
+   python3 decrypt_image.py
+```
+
 3. Gambar yang telah didekripsi akan disimpan sebagai `decrypted_image.jpg`.
+
+## Output
+
+1. Hasil pencarian kunci
+
+![Hasil Pencarian Kunci](images/image.png)
+
+2. Proses dekripsi image
+
+![Hasil Dekripsi](images/image2.png)
 
 ## Catatan
 
