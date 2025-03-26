@@ -4,7 +4,8 @@ Program ini berisi skrip Python untuk mendekripsi gambar yang telah dienkripsi m
 
 ## File
 
-- `decrypt_image.py`: Skrip utama yang berisi fungsi untuk menemukan kunci affine dan mendekripsi gambar.
+- `decrypt_image.py`: Skrip utama yang berisi fungsi untuk mendekripsi gambar.
+- `find_key.py`: Skrip utama yang berisi fungsi untuk menemukan kunci affine.
 
 ## Cara Kerja
 
