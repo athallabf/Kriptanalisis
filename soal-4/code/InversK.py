@@ -1,15 +1,35 @@
-# Mengimpor kembali pustaka yang diperlukan setelah reset
-from sympy import Matrix
+from sympy import Matrix, mod_inverse
 
-# Definisi matriks K
-K = Matrix([[6, 13, 20],
-            [24, 16, 17],
-            [1, 10, 15]])
+# Given matrices
+C = Matrix([
+    [2, 2, 3],
+    [3, 2, 10],
+    [4, 25, 16]
+])
 
-# Menghitung invers K dalam mod 26
+P = Matrix([
+    [7, 11, 24],
+    [4, 14, 1],
+    [11, 2, 4]
+])
+
+def matrix_mod_inv(matrix, mod):
+    det = matrix.det() % mod
+    if det == 0 or not mod_inverse(det, mod):
+        raise ValueError(f"Matrix tidak dapat diinvers modulo {mod}")
+    
+    return (matrix.adjugate() * mod_inverse(det, mod)) % mod
+
+# Hitung C⁻¹ mod 26
 try:
-    K_inv_mod26 = K.inv_mod(26)
-except ValueError:
-    K_inv_mod26 = "Matriks K tidak memiliki invers dalam mod 26"
+    C_inv = matrix_mod_inv(C, 26)
+except ValueError as e:
+    print(e)
+    exit()
 
-K_inv_mod26
+# Hitung K⁻¹ = P * C⁻¹ mod 26
+K_inv = (P * C_inv) % 26
+
+# Tampilkan hasil
+print("K⁻¹ =")
+print(K_inv)

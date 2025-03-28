@@ -136,27 +136,108 @@ HELLOCYBERFOXATTACKERHERECRYPTOGRAPHYISCRUCIALFORSAFEGUARDINGI NFORMATIONINCOMPU
 PLICATIONTOENCRYPTBLOCKSOFLETTERSSIMULTANEOUSLYMAKINGITMORERES ISTANTTOFREQUENCYANALYSISHOWEVERDESPITEITSMATHEMATICALSOPHISTI CATIONITCANBEDECRYPTEDIFANATTACKEROBTAINSENOUGHPLAINTEXTCIPHER TEXTPAIRSALLOWINGTHEMTOSOLVEFORTHEENCRYPTIONMATRIXTHISHIGHLIGH TSAFUNDAMENTALPRINCIPLEINMODERNCRYPTOGRAPHYTRUESECURITYRELIESN OTJUSTONSECRECYBUTALSOONSOLIDMATHEMATICALFOUNDATIONSANDCOMPUTA TIONALINFEASIBILITYAA
 ```
 ## Matriks Invers K
+Gunakan code python
 ```
-# Mengimpor kembali pustaka yang diperlukan setelah reset
-from sympy import Matrix
+from sympy import Matrix, mod_inverse
 
-# Definisi matriks K
-K = Matrix([[6, 13, 20],
-            [24, 16, 17],
-            [1, 10, 15]])
+# Given matrices
+C = Matrix([
+    [2, 2, 3],
+    [3, 2, 10],
+    [4, 25, 16]
+])
 
-# Menghitung invers K dalam mod 26
+P = Matrix([
+    [7, 11, 24],
+    [4, 14, 1],
+    [11, 2, 4]
+])
+
+def matrix_mod_inv(matrix, mod):
+    det = matrix.det() % mod
+    if det == 0 or not mod_inverse(det, mod):
+        raise ValueError(f"Matrix tidak dapat diinvers modulo {mod}")
+    
+    return (matrix.adjugate() * mod_inverse(det, mod)) % mod
+
+# Hitung C⁻¹ mod 26
 try:
-    K_inv_mod26 = K.inv_mod(26)
-except ValueError:
-    K_inv_mod26 = "Matriks K tidak memiliki invers dalam mod 26"
+    C_inv = matrix_mod_inv(C, 26)
+except ValueError as e:
+    print(e)
+    exit()
 
-K_inv_mod26
+# Hitung K⁻¹ = P * C⁻¹ mod 26
+K_inv = (P * C_inv) % 26
+
+# Tampilkan hasil
+print("K⁻¹ =")
+print(K_inv)
+
 ```
 Matrix([ [ 8, 21, 21], 
 [ 5, 8, 12], 
 [10, 21, 8]])
 
+Cek K x K^-1 
+```
+import numpy as np
+
+def matrix_multiply_mod26(A, B):
+    """
+    Mengalikan dua matriks 3x3 lalu mengambil hasilnya mod 26.
+    """
+    # Pastikan matriks berbentuk 3x3
+    if A.shape != (3, 3) or B.shape != (3, 3):
+        raise ValueError("Matriks harus berukuran 3x3")
+    
+    # Perkalian matriks
+    result = np.dot(A, B) % 26
+    return result
+
+# Contoh penggunaan
+A = np.array([[ 6, 13, 20],
+              [24, 16, 17],
+              [ 1, 10, 15]])
+
+
+B = np.array([[8, 21, 21],
+              [5, 8, 12],
+              [10, 21, 8]])
+
+
+hasil = matrix_multiply_mod26(A, B)
+print("Hasil perkalian matriks mod 26:")
+print(hasil)
+```
+Hasilnya
+```
+Hasil perkalian matriks mod 26:
+[[1 0 0]
+ [0 1 0]
+ [0 0 1]]
+```
+Kemudian kita cek menggunakan tools online `https://www.dcode.fr/hill-cipher`
+
+cara kerja tools nya <br/>
+- decript <br/>
+```
+cipher -> plaintext
+key
+
+p-> c
+key-1 
+```
+- encrypt
+```
+p-> c
+key
+
+c-> p
+key-1
+```
+![Img6](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img6.png) <br/>
+![Img7](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img7.png) <br/>
 ## Waktu Kriptanalisis
 2 Jam
 
