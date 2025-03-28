@@ -40,6 +40,7 @@
 ## Pre-Requisite
 
 - **Tabel Frekuensi Bahasa Inggris**
+  
 ![English Freq Letters](images/englishletters.jpg)
 
 ***Noted*** : Tabel diatas akan digunakan untuk menemukan key dari soal menggunakan teknik analisa frekuensi.
