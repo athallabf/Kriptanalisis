@@ -40,7 +40,7 @@
 ## Pre-Requisite
 
 - **Tabel Frekuensi Bahasa Inggris**
-![English Freq Letters](images\englishletters.jpg)
+![English Freq Letters](images/englishletters.jpg)
 
 ***Noted*** : Tabel diatas akan digunakan untuk menemukan key dari soal menggunakan teknik analisa frekuensi.
 
@@ -48,7 +48,7 @@
 
 1. Dilakukan analisa frekuensi analisa terlebih dahulu dengan menjalankan program `frequencycip.py`
 
-![Cipher Freq Letters](images\freqletters.png)
+![Cipher Freq Letters](images/freqletters.png)
 ![CipherTrigrams](images/trigrams.png)
 
 2. Karena terlihat bahwa `N` menjadi huruf yang sering muncul pada _Ciphertext_, maka jika kita cocokkan dengan tabel yang ada di [_Pre-Requisite_](#pre-requisite) akan timbul sebuah asumsi dimana E = N. Dengan kata lain, maka _Plaintext_ adalah 9x pergeseran ke kiri dari _Ciphertext_. Dengan demikian maka kita dapat membuat tabel berikut
