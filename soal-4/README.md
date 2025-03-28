@@ -47,12 +47,12 @@ Output:
 
 1. Cari m <br/>
 - Check jumlah huruf pada cipher text<br/>
-![Check jumlah karakter](soal-4/img/img1.png)
+![Check jumlah karakter](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img1.png)
 
 https://charactercalculator.com/id/
 Terdapat 1323 Karakter <br/>
 - Check faktorisasi prima
-![Faktorisasi Prima](soal-4/img/img2.png)
+![Faktorisasi Prima](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img2.png)
 
 Kemungkinan m = 1, 3 karena 7^2 = 49 jumlah karakter pada plaintext tidak mencukupi maka m >=7 tidak memenuhi <br/>
 2. Coba m=3 <br/>
@@ -119,14 +119,16 @@ P_inv_mod26, K
 ## Matriks K
 Didapatkan K
 
-![Matriks K](soal-4/img/img3.png)
+![Matriks K](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img3.png)
 
 Gunakan Decoder Hill cipher online
+![Matriks K](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img4.png)
+
 https://www.dcode.fr/hill-cipher
 
 Hasilnya terlihat masuk akal
 ## Plaintext hasil dekripsi 
-![Hasil](soal-4/img/img3.png)
+![Hasil](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img5.png)
 
 Berikut plaintext lengkapnya
 ```
