@@ -1,0 +1,166 @@
+# Kriptanalisis Hill Cipher
+
+Cyber Fox menemukan dokumen lain yang tampaknya memiliki struktur matriks
+yang lebih kompleks. Pola dalam ciphertext tidak mengikuti sifat substitusi sederhana
+maupun poli-alfabetik seperti sebelumnya. Cyber Fox menyadari bahwa Hill
+Cipher telah digunakan untuk mengenkripsi bagian ini!
+Jika frasa pertama yang diketahui adalah "Hello Cyber Fox, attacker here!",
+Cyber Fox menggunakan known-plaintext attack (KPA) untuk menganalisis Hill
+Cipher. Dengan teknik invers matriks modular, ia berusaha mengungkap kunci enkripsi
+yang digunakan. Bantulah Cyber Fox membongkar pesan ini!
+
+```
+CDECCZDKQFYRYRWYWXKVTSBQABTRVRITRXVVKWKJKEMUEVKLYUPUAFSPPSFSKZ
+VGJKKNLWNFXSMUDVHKSWMFERVUWEVZTZQVOGWALCAYTKXAKNKYDTZMTWATADAL
+YSANZSBMIGPUGNTMHFJRSKSTLQKFRXAKHMOHEYQDUMSFIAMOBSKBFWZKGZEVAK
+SHQHPGJUKKLNSZAIFCWUKUKWMMJUDVVOWHWXEAVWODIAMOBSDNNNUYYRVRWMPQ
+PYJDZRXDZBJUKOPUXIZQTHSKKHEYATYCONMHOACPMNIESNKZZYBKTZHXCGOABR
+EJCIDCJCRVRWNFCJPCUWYNQGCGSLJDWLCHBWNFLCMGNNTDLMPTLSYFWAUMGWFM
+WQCCWPLAMTSZXAULWDEADALPBQIDUTSJGSWPGKBIAMOBSOKSPGFBDDLMECGVUD
+VEEZYCORCJEIOMXENEQUMGZHUUSOSCNSFSMDPALWXAHIDEWNFJOQJLLELRNAUV
+OQQDUINZIKVMSSSGOMGRHSKZWJVOQASVCKVIZGIQWPIQGJKLWURYLIQBOAZMHO
+ACPMNIESNCUKXWSGIYEBHTYIBEIMHOACPMNIESNSKKHEYOOPTSOFRFHSGBZHXC
+XATDOOFNOEWKQXHJYCUYUZBPXSMDESDJDOZGANUGMFWSMMLMCYZEVECXLFNUAC
+WPYMHOBSWQCQWROHPVUMDOTEMXBGDANZKNUCSLFSKPCJUGAURCOQZOUEXTFWNF
+ETPUPLZMTAVZQOZCJCRVRWNFYILHSXUSQBXBNSIFSFCWPHAVOHVWCRTNPIWQWL
+YTEEEQXEMXBUPCAFBXBPGMPGVTFDTDLNGOCPMPUYXHWVZNMVDMZGOZDGQHSGWA
+QXLZGPGSYUZAPVSBQBXBPGMPGVTFDVGGAWQOPAAVZDSSNLJANNSETBGXSSBFCJ
+DWLCHBWNFMULCJCRVRNWJIUIFFVBVLHYCKKSTRZPQICAQUUPEKMEYLECLAHACA
+SRIADDUVDHIQWZAIORLZMCAIEOMJNGONEDVCCOGXQMPXHJYCUYUZJOQDTJMXFW
+QCEQXQJOMJPOJIABTRVRPUYEDSDDHSUOFIUTQJFESFWGATDZQVZVHBHZAPVSBQ
+CBOXUNFQGZZPKSQQDUWUTGYNXLXFYEVZAYRFLAMDUNZUMPVDZZDMETGIVHMDNH
+XAXPLLNCAYNSVDNAXSMVVLYDTCRPLRFLAMTSZXAULWDHCVAKKOHPVUMKJOSQGQ
+BWYKLKRQSKKMMJLWWWTCYKEUGNWBGKNLWUTRYYYBLOIDNWREQXACLBEVUDVDEC
+EQXMFWFRFUMONGIENMOEY
+```
+
+Output:
+- Dokumentasi langkah-langkah analisis dalam pemecahan cipher
+- Plainteks hasil dekripsi
+- Matriks Kunci
+- Matriks Invers Kunci
+- Kode Python yang digunakan (jika ada)
+- Waktu kriptanalisis yang dibutuhkan
+- Perbandingan dengan pendekatan Brute Force / Exhaustive Key Attack (optional)
+
+## Langkah analisis
+
+1. Cari m <br/>
+- Check jumlah huruf pada cipher text<br/>
+![Check jumlah karakter](soal-4/img/img1.png)
+
+https://charactercalculator.com/id/
+Terdapat 1323 Karakter <br/>
+- Check faktorisasi prima
+![Faktorisasi Prima](soal-4/img/img2.png)
+
+Kemungkinan m = 1, 3 karena 7^2 = 49 jumlah karakter pada plaintext tidak mencukupi maka m >=7 tidak memenuhi <br/>
+2. Coba m=3 <br/>
+```
+Hello Cyber Fox, attacker here!
+```
+- Hilangkan spasi dan tanda baca<br/>
+```
+HelloCyberFoxattackerhere
+```
+- Ambil 9 karakter
+```
+HelloCybe
+```
+- Ambil 9 karakter dari cipher text
+```
+CDECCZDKQ
+```
+- Ubah menjadi numerik A=0 dst
+```
+p = 7 4 11 11 14 2 24 1 4
+C = 2 3 4 2 2 25 3 10 16
+
+P=
+7 11 24 
+4 14 1
+11 2 4
+
+C=
+2 2 3 
+3 2 10
+4 25 16
+```
+
+3. Hitung K
+Rumus
+```
+K = CP^-1 mod 26
+```
+Gunakan python
+```
+from sympy import Matrix
+
+# Definisi matriks C dan P
+C = Matrix([[2, 2, 3],
+            [3, 2, 10],
+            [4, 25, 16]])
+
+P = Matrix([[7, 11, 24],
+            [4, 14, 1],
+            [11, 2, 4]])
+
+# Hitung invers P dalam mod 26
+try:
+    P_inv_mod26 = P.inv_mod(26)
+    # Hitung K = C * P^-1 mod 26
+    K = (C * P_inv_mod26) % 26
+except ValueError:
+    P_inv_mod26 = "Matriks P tidak memiliki invers dalam mod 26"
+    K = None
+
+P_inv_mod26, K
+```
+## Matriks K
+Didapatkan K
+
+![Matriks K](soal-4/img/img3.png)
+
+Gunakan Decoder Hill cipher online
+https://www.dcode.fr/hill-cipher
+
+Hasilnya terlihat masuk akal
+## Plaintext hasil dekripsi 
+![Hasil](soal-4/img/img3.png)
+
+Berikut plaintext lengkapnya
+```
+HELLOCYBERFOXATTACKERHERECRYPTOGRAPHYISCRUCIALFORSAFEGUARDINGI NFORMATIONINCOMPUTINGSYSTEMSANDPLAYSANINTEGRALROLEINTHEDAILYLI VESOFBILLIONSOFPEOPLEWORLDWIDEBYENSURINGTHESECURITYOFBOTHSTORE DANDTRANSMITTEDDATAASACORECOMPONENTOFMANYSECURITYPROTOCOLSPART ICULARLYTRANSPORTLAYERSECURITYTLSCRYPTOGRAPHICMETHODSPROVIDEST RONGENCRYPTIONACROSSVARIOUSAPPLICATIONSHOWEVERDESPITEITSSIGNIF ICANCECRYPTOGRAPHYREMAINSVULNERABLEITSSECURITYCANBEENTIRELYCOM PROMISEDBYASINGLEDESIGNFLAWORCODINGERRORTRADITIONALSOFTWARETES TINGTECHNIQUESSUCHASUNITTESTINGAREINADEQUATEFORIDENTIFYINGCRYP TOGRAPHICWEAKNESSESINSTEADCRYPTOGRAPHICSECURITYISREINFORCEDTHR OUGHRIGOROUSMATHEMATICALPROOFSANDFORMALANALYSISTOVERIFYADHEREN CETOCRITICALSECURITYPRINCIPLESOFTENBASEDONREASONABLEASSUMPTION SONEOFTHEEARLYENCRYPTIONTECHNIQUESTHATADVANCEDBEYONDSIMPLESUBS TITUTIONCIPHERSISTHEHILLCIPHERDEVELOPEDINTHETHCENTURYUNLIKEMON OALPHABETICCIPHERSTHEHILLCIPHERUSESLINEARALGEBRAANDMATRIXMULTI
+PLICATIONTOENCRYPTBLOCKSOFLETTERSSIMULTANEOUSLYMAKINGITMORERES ISTANTTOFREQUENCYANALYSISHOWEVERDESPITEITSMATHEMATICALSOPHISTI CATIONITCANBEDECRYPTEDIFANATTACKEROBTAINSENOUGHPLAINTEXTCIPHER TEXTPAIRSALLOWINGTHEMTOSOLVEFORTHEENCRYPTIONMATRIXTHISHIGHLIGH TSAFUNDAMENTALPRINCIPLEINMODERNCRYPTOGRAPHYTRUESECURITYRELIESN OTJUSTONSECRECYBUTALSOONSOLIDMATHEMATICALFOUNDATIONSANDCOMPUTA TIONALINFEASIBILITYAA
+```
+## Matriks Invers K
+```
+# Mengimpor kembali pustaka yang diperlukan setelah reset
+from sympy import Matrix
+
+# Definisi matriks K
+K = Matrix([[6, 13, 20],
+            [24, 16, 17],
+            [1, 10, 15]])
+
+# Menghitung invers K dalam mod 26
+try:
+    K_inv_mod26 = K.inv_mod(26)
+except ValueError:
+    K_inv_mod26 = "Matriks K tidak memiliki invers dalam mod 26"
+
+K_inv_mod26
+```
+Matrix([ [ 8, 21, 21], 
+[ 5, 8, 12], 
+[10, 21, 8]])
+
+## Waktu Kriptanalisis
+2 Jam
+
+## Brute force
+Exhaustive attacks are only a threat for small 𝑚
+- Only feasible for small m 
+Total invertible matrices modulo 26 = 157,248.
+157,248 keys can be tested in seconds with modern computing (e.g., 1 millio keys/second).
+- For 𝑚=3, ~10^12 keys: computationally impossible.
