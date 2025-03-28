@@ -112,3 +112,6 @@
 ## Perbandingan Waktu
 
 Dari hasil yang terlihat, nampak bahwa perbandingan waktu tidak akan terasa mengingat bahwa Caesar Cipher merupakan salah satu cipher yang mudah untuk di-_crack_ oleh sebuah algoritma.
+
+## Waktu Kriptanalisis
+Waktu yang dibutuhkan kurang lebih berada pada kisaran 5-10 menit.
