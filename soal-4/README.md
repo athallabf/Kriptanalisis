@@ -121,7 +121,7 @@ Didapatkan K
 
 ![Matriks K](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img3.png)
 
-Gunakan Decoder Hill cipher online
+Gunakan Decoder Hill cipher online <br/>
 ![Matriks K](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img4.png)
 
 https://www.dcode.fr/hill-cipher
@@ -236,8 +236,8 @@ key
 c-> p
 key-1
 ```
-![Img6](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img6.png) <br/>
-![Img7](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img7.png) <br/>
+![Img6](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img6.jpg) <br/>
+![Img7](https://github.com/athallabf/Kriptanalisis/blob/main/soal-4/img/img7.jpg) <br/>
 ## Waktu Kriptanalisis
 2 Jam
 
