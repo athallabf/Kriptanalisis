@@ -33,13 +33,14 @@
     - Program akan membuat string hasil dekripsi sementara dan akan disimpan pada list `results` untuk menyimpan semua kemungkinan hasil
     - Program akan melakukan pergesera pada setiap huruf sesuai dengan nilai `shift`
     - `shift` bernilai 0-25 sesuai jumlah alfabetikal
-    - Rumus dekripsi `chr((ord(char) - ord('A') - shift) % 26 + ord('A'))  # Huruf kapital
-chr((ord(char) - ord('a') - shift) % 26 + ord('a'))  # Huruf kecil`
+    - Rumus dekripsi
+    -     chr((ord(char) - ord('A') - shift) % 26 + ord('A'))  # Huruf kapital
+    -     chr((ord(char) - ord('a') - shift) % 26 + ord('a'))  # Huruf kecil
 
 ## Pre-Requisite
 
 - **Tabel Frekuensi Bahasa Inggris**
-![English Freq Letters](images\english-freq-letters.jpg)
+![English Freq Letters](images\englishletters.jpg)
 
 ***Noted*** : Tabel diatas akan digunakan untuk menemukan key dari soal menggunakan teknik analisa frekuensi.
 
